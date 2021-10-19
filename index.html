@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>로또 추첨기</title>
+    <!-- style.css 연결 -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- 시작화면 -->
+    <header class="start">
+        <h1>행운의 로또 🎱</h1>
+    </header>
+    <section>
+        <div>
+            <span id="num1" class="num">　</span>
+            <span id="num2" class="num">　</span>
+            <span id="num3" class="num">　</span>
+            <span id="num4" class="num">　</span>
+            <span id="num5" class="num">　</span>
+            <span id="num6" class="num">　</span>
+            <span id="plus"></span>
+            <span id="bonus" class="num">　</span>
+        </div>
+        <button type="button" class="start_btn" onclick="lotto();">인생역전 버튼</button>
+    </section>
+    <footer class="footer">
+        <!-- 카카오 애드핏 광고 -->
+        <ins class="kakao_ad_area" style="display:none;" 
+        data-ad-unit    = "DAN-rv6GR7u5EcR9iRw3" 
+        data-ad-width   = "320" 
+        data-ad-height  = "100"></ins> 
+        <script type="text/javascript" src="//t1.daumcdn.net/kas/static/ba.min.js" async></script>
+        <!-- div는 페이지의 영역을 설정할 때 사용하는 태그 -->
+        <div>공유하기</div>
+        <!-- addthis를 이용해서 공유하기 기능 추가 -->
+        <div class="addthis_inline_share_toolbox"></div>
+        <div>ⓒ 2021. aranpark all rights reseved.</div>
+    </footer>
+</body>
+<!-- addthis를 위한 javascript 파일 링크 -->
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-60ee73a6845cb0f2"></script>
+<script>
+    function lotto(){
+        let candidate = Array(45).fill().map((element, index) => {
+            return index + 1;
+        });
+
+        // console.log(candidate);
+
+        let shuffle = [];
+        while (candidate.length > 0) {
+            let value = candidate.splice(Math.floor(Math.random() * candidate.length), 1)[0];
+            shuffle.push(value);
+        }
+
+        // console.log(shuffle);
+
+        let win = shuffle.slice(0, 6);
+        let bonus = shuffle[shuffle.length - 1];
+
+        win.sort((p, c)=> {return p -c});
+
+        console.log('Win number :', win, 'bonus :', bonus);
+
+        for(let i = 1; i <= win.length; i++){
+            document.getElementById("num" + i).innerHTML = win[i - 1];
+        }
+
+        // if(win >= 10) {
+        //     let num = document.getElementsByClassName("num");
+        //     num.style.backgroundColor = "red";
+        // }
+
+        document.getElementById("plus").innerHTML = '+';
+        document.getElementById("bonus").innerHTML = bonus;
+    }
+</script>
+</html>
