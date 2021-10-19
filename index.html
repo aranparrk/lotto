@@ -21,8 +21,6 @@
             <span id="num4" class="num">　</span>
             <span id="num5" class="num">　</span>
             <span id="num6" class="num">　</span>
-            <span id="plus"></span>
-            <span id="bonus" class="num">　</span>
         </div>
         <button type="button" class="start_btn" onclick="lotto();">인생역전 버튼</button>
     </section>
@@ -59,23 +57,15 @@
         // console.log(shuffle);
 
         let win = shuffle.slice(0, 6);
-        let bonus = shuffle[shuffle.length - 1];
+        // let bonus = shuffle[shuffle.length - 1];
 
         win.sort((p, c)=> {return p -c});
 
-        console.log('Win number :', win, 'bonus :', bonus);
+        console.log('Win number :', win);
 
         for(let i = 1; i <= win.length; i++){
             document.getElementById("num" + i).innerHTML = win[i - 1];
         }
-
-        // if(win >= 10) {
-        //     let num = document.getElementsByClassName("num");
-        //     num.style.backgroundColor = "red";
-        // }
-
-        document.getElementById("plus").innerHTML = '+';
-        document.getElementById("bonus").innerHTML = bonus;
     }
 </script>
 </html>
